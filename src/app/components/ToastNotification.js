@@ -1,7 +1,7 @@
-"use client"
+"use client";
 import React, { useState, useEffect } from "react";
 
-const ToastNotification = ({  id, message, type, onRemove }) => {
+const ToastNotification = ({ id, message, type, onRemove }) => {
   const [visible, setVisible] = useState(false);
   useEffect(() => {
     setVisible(true);
@@ -11,7 +11,7 @@ const ToastNotification = ({  id, message, type, onRemove }) => {
     }, 4000);
     return () => clearTimeout(timer);
   }, [id, onRemove]);
-
+  
   const getTypeClasses = () => {
     switch (type) {
       case "success":
@@ -32,13 +32,14 @@ const ToastNotification = ({  id, message, type, onRemove }) => {
       className={`w-full p-4 rounded shadow-lg transition-all duration-500 mb-4 ${
         visible ? "opacity-100" : "opacity-0"
       } ${getTypeClasses()}`}
+      key={id}
     >
       <div className="flex items-center justify-between">
         <span>{message}</span>
         <button
           onClick={() => {
             setVisible(false);
-            onRemove(id)
+            onRemove(id);
           }}
           className="ml-4 text-white hover:text-gray-300"
         >

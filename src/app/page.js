@@ -1,9 +1,8 @@
 "use client";
-import ToastContainer from "./components/ToastContainer";
 import useToast from "./hooks/useToast";
 
 const Home = () => {
-  const { toasts, addToast, removeToast } = useToast();
+  const { toasts, addToast, ToastComponent, removeToast } = useToast();
 
   const showToast = (type) => {
     addToast(`This is a notification ${type} message`, type);
@@ -40,7 +39,12 @@ const Home = () => {
         </div>
       </div>
       <div className="w-full flex-1 overflow-y-auto">
-        <ToastContainer toasts={toasts} onRemove={removeToast} position={'top-left'} />
+        <ToastComponent
+          toasts={toasts}
+          onRemove={removeToast}
+          position={'top-right'}
+        />
+        {/* <ToastContainer toasts={toasts} onRemove={removeToast} position={'top-left'} /> */}
       </div>
     </div>
   );
